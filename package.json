@@ -1,0 +1,9 @@
+{
+  "license": "UNLICENSED",
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  },
+  "scripts": {
+    "dev": "node main.js"
+  }
+}
