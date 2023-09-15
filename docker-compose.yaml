@@ -1,0 +1,12 @@
+version: '1.0'
+
+services:
+  mycontainer:
+    image: docker-n-shit
+    build: .
+      # command: sh -c "yarn install && yarn dev"
+    ports:
+      - 127.0.0.1:5000:3000
+    working_dir: /src
+    volumes:
+      - './:/src'

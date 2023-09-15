@@ -19,11 +19,18 @@ yarn
 
 now we use this command to issue a running container
 ```bash
-docker run -dp 127.0.0.1:3000:3000 \
--w /src \
---mount type=bind,src="${pwd}",target=/src \
---mount type=bind,src="${pwd}/../sqlite-data",target=/sqlite-data \
-node:18-alpine sh -c "yarn dev"
+./build.sh
 ```
 
 now go to `127.0.0.1:3000` and see what happens
+
+### docker explain
+
+```
+the philosophy is we store data in the host machine, since container have their
+own session, will deleted when teared down create a connection between host's
+filesystem to container some kind of logical connection and each newly created
+container can see the same files because it is stored in the host machine
+loose-couple: docker will manage the host filesystem connection by default, so
+when you deploy to another machine, docker will handle that and it will be 
+```

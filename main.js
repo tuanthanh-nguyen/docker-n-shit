@@ -1,9 +1,9 @@
 const http = require('http')
 const sqlite3 = require('sqlite3').verbose();
 
-const dbLocation = '../sqlite-data/a5k42'
+const dbLocation = './a5k42'
 const dbName = 'a5k42'
-
+const port = 3000
 
 const db = new sqlite3.Database(dbLocation, (err) => {
     if (err) console.error(`cannot connect to ${dbLocation}`)
@@ -14,7 +14,7 @@ http.createServer((req, res) => {
   const { url } = req
   if (url === '/') {
     db.serialize(() => {
-      db.all("select * from user", (err, rows) => {
+      db.all("select * from student", (err, rows) => {
           if (err) console.error(err)
           res.setHeader('Content-Type', 'application/json')
           res.end(JSON.stringify(rows))
@@ -33,6 +33,6 @@ http.createServer((req, res) => {
     return
   }
   return res.end('404 NOT FOUND')
-}).listen(3000)
+}).listen(port)
 
 process.on('exit', () => { db.close() })
